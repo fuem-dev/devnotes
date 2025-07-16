@@ -1,23 +1,17 @@
-import Link from "next/link";
-import { posts } from "@/lib/posts";
-
+import { getAllPosts } from "@/lib/posts";
+import PostCard from "@/components/PostCard";
 
 export default function HomePage() {
+  const posts = getAllPosts();
+
   return (
-    <main className="p-4">
-      <h1 className="text-3xl font-bold mb-4">DevNotes</h1>
-      <ul className="space-y-2">
-        {Object.entries(posts).map(([slug, post]) => (
-          <li key={slug}>
-            <Link
-              href={`/posts/${slug}`}
-              className="text-blue-600 hover:underline"
-            >
-              {post.title}
-            </Link>
-          </li>
+    <>
+      <h1 className="text-3xl font-bold mb-6 text-center">Últimos posts</h1>
+      <div className="space-y-4">
+        {posts.map((post) => (
+          <PostCard key={post.slug} slug={post.slug} title={post.title} />
         ))}
-      </ul>
-    </main>
+      </div>
+    </>
   );
 }

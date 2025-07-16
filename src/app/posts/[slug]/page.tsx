@@ -1,5 +1,6 @@
-import { notFound } from "next/navigation";
+// src/app/posts/[slug]/page.tsx
 import { getPost } from "@/lib/posts";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: { slug: string };
